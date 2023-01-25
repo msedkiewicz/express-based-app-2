@@ -3,6 +3,8 @@ const path = require("path");
 
 const app = express();
 
+const user = ["/user/settings", "/user/panel"];
+
 app.use((req, res, next) => {
   res.show = (name) => {
     res.sendFile(path.join(__dirname, `/views/${name}`));
@@ -10,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/user", (req, res) => {
+app.use(user, (req, res) => {
   res.show("forbidden.html");
 });
 
